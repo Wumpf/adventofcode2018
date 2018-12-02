@@ -17,12 +17,12 @@ data = open('input.txt').readlines()
 
 # ----------------------------------------------------------------
 
-l2 = len([bid for bid in data if any(bid.count(chr(letter)) == 2 for letter in range(ord('a'), ord('z')+1))])
-l3 = len([bid for bid in data if any(bid.count(chr(letter)) == 3 for letter in range(ord('a'), ord('z')+1))])
+l2 = sum(any(bid.count(letter) == 2 for letter in list(bid)) for bid in data)
+l3 = sum(any(bid.count(letter) == 3 for letter in list(bid)) for bid in data)
 print('result part one:', l2 * l3)
 
 # silly oneliner
-#print('result part one:', len([bid for bid in open('input.txt').readlines() if any(bid.count(chr(letter)) == 2 for letter in range(ord('a'), ord('z')+1))]) * len([bid for bid in open('input.txt').readlines() if any(bid.count(chr(letter)) == 3 for letter in range(ord('a'), ord('z')+1))]))
+#print('result part one:', sum(any(bid.count(letter) == 2 for letter in list(bid)) for bid in data) * sum(any(bid.count(letter) == 3 for letter in list(bid)) for bid in data))
 
 # ----------------------------------------------------------------
 
