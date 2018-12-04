@@ -50,6 +50,7 @@ for event in data:
         else:
             guards[cur_guard] = [ sleep_range ]
 
+# ----------------------------------------------------------------
 
 sleepiest_guard = max(zip(guards.keys(), guards.values()), key = lambda guard: sum(sleeprange[1] - sleeprange[0] for sleeprange in guard[1]))
 
@@ -63,5 +64,17 @@ print('result part one:', int(sleepiest_guard[0]) * sleepiest_minute)
 
 # ----------------------------------------------------------------
 
+guard_with_sleepiest_minute = (0, None)
+max_sleep_on_min = 0
+for guard, sleep_intervals in guards.items():
+    minutes = [0] * 60
+    for sleep_range in sleep_intervals:
+        for i in range(sleep_range[0], sleep_range[1]):
+            minutes[i] += 1
+    sleep_on_min = max(minutes)
+    if max_sleep_on_min < sleep_on_min:
+        guard_with_sleepiest_minute = (minutes.index(sleep_on_min), guard)
+        max_sleep_on_min = sleep_on_min
 
-print('result part two:', 0)
+
+print('result part two:', guard_with_sleepiest_minute[0] * int(guard_with_sleepiest_minute[1]))
