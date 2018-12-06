@@ -9,15 +9,18 @@ data = [
     '5, 5',
     '8, 9',
 ]
+max_total_dist = 32
+board_size = 20
 
 # file input
 data = open('input.txt').readlines()
+max_total_dist = 10000
+board_size = 500
 
 # ----------------------------------------------------------------
 
-
 coordinates = [tuple(int(num) for num in line.split(',')) for line in data]
-board_size = 500
+# ----------------------------------------------------------------
 
 def find_closest_cor(x, y):
     dist = float("inf")
@@ -43,3 +46,9 @@ for i in range(board_size):
 scores.pop()
 
 print('result part one:', max(scores))
+
+# ----------------------------------------------------------------
+
+board = [[sum(abs(x - cor[0]) + abs(y - cor[1]) for cor in coordinates) for x in range(board_size)] for y in range(board_size)]
+print('result part two:', sum(field < max_total_dist for row in board for field in row))
+
