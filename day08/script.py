@@ -46,4 +46,4 @@ def count_special(node):
         return sum(node.meta)
     return sum(count_special(node.children[meta - 1]) for meta in node.meta if meta != 0 and meta <= len(node.children))
 
-print('result part one:', count_special(root_node))
+print('result part two:', count_special(root_node))
